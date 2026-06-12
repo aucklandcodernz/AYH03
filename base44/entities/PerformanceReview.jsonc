@@ -1,0 +1,66 @@
+{
+  "name": "PerformanceReview",
+  "type": "object",
+  "properties": {
+    "organization_id": {
+      "type": "string"
+    },
+    "employee_id": {
+      "type": "string"
+    },
+    "reviewer_id": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "monthly",
+        "quarterly",
+        "annual",
+        "probation"
+      ]
+    },
+    "period": {
+      "type": "string"
+    },
+    "overall_rating": {
+      "type": "number",
+      "description": "Rating 1-5"
+    },
+    "strengths": {
+      "type": "string"
+    },
+    "areas_for_improvement": {
+      "type": "string"
+    },
+    "development_plan": {
+      "type": "string"
+    },
+    "feedback_notes": {
+      "type": "string"
+    },
+    "employee_comments": {
+      "type": "string"
+    },
+    "employee_acknowledged": {
+      "type": "boolean",
+      "default": false
+    },
+    "acknowledged_date": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "completed",
+        "acknowledged"
+      ],
+      "default": "draft"
+    }
+  },
+  "required": [
+    "employee_id",
+    "type"
+  ]
+}

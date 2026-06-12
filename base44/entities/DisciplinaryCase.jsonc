@@ -1,0 +1,170 @@
+{
+  "name": "DisciplinaryCase",
+  "type": "object",
+  "properties": {
+    "organization_id": {
+      "type": "string"
+    },
+    "employee_id": {
+      "type": "string"
+    },
+    "issue_type": {
+      "type": "string",
+      "enum": [
+        "misconduct",
+        "serious_misconduct",
+        "attendance",
+        "breach_of_policy",
+        "hs_breach",
+        "performance"
+      ]
+    },
+    "description": {
+      "type": "string"
+    },
+    "date_identified": {
+      "type": "string",
+      "format": "date"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "logged",
+        "investigating",
+        "meeting_scheduled",
+        "outcome_pending",
+        "warning_issued",
+        "pip_issued",
+        "closed"
+      ],
+      "default": "logged"
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "document_url": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "investigation_notes": {
+      "type": "string"
+    },
+    "meetings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string"
+          },
+          "notes": {
+            "type": "string"
+          },
+          "employee_explanation": {
+            "type": "string"
+          },
+          "attendees": {
+            "type": "string"
+          },
+          "minutes_url": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "outcome": {
+      "type": "string",
+      "enum": [
+        "no_action",
+        "informal_warning",
+        "first_warning",
+        "final_warning",
+        "dismissal",
+        "training_coaching"
+      ]
+    },
+    "outcome_letter_url": {
+      "type": "string"
+    },
+    "warning_expiry_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "follow_up_actions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string"
+          },
+          "due_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "compliance_checklist": {
+      "type": "object",
+      "properties": {
+        "proper_process": {
+          "type": "boolean"
+        },
+        "investigation_completed": {
+          "type": "boolean"
+        },
+        "right_to_respond": {
+          "type": "boolean"
+        },
+        "documentation_attached": {
+          "type": "boolean"
+        }
+      }
+    },
+    "pip": {
+      "type": "object",
+      "properties": {
+        "expectations": {
+          "type": "string"
+        },
+        "improvement_actions": {
+          "type": "string"
+        },
+        "support_offered": {
+          "type": "string"
+        },
+        "review_dates": {
+          "type": "string"
+        },
+        "consequences": {
+          "type": "string"
+        },
+        "employee_response": {
+          "type": "string"
+        },
+        "progress_notes": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "required": [
+    "organization_id",
+    "employee_id",
+    "issue_type"
+  ]
+}

@@ -1,0 +1,143 @@
+{
+  "name": "Incident",
+  "type": "object",
+  "properties": {
+    "organization_id": {
+      "type": "string"
+    },
+    "reported_by_id": {
+      "type": "string"
+    },
+    "incident_type": {
+      "type": "string",
+      "enum": [
+        "incident",
+        "near_miss",
+        "injury",
+        "property_damage",
+        "unsafe_behaviour"
+      ]
+    },
+    "date_time": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "people_involved": {
+      "type": "string"
+    },
+    "witnesses": {
+      "type": "string"
+    },
+    "photos": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "documents": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ]
+    },
+    "likelihood": {
+      "type": "string",
+      "enum": [
+        "unlikely",
+        "possible",
+        "likely",
+        "almost_certain"
+      ]
+    },
+    "medical_treatment_required": {
+      "type": "boolean"
+    },
+    "lost_time_injury": {
+      "type": "boolean"
+    },
+    "notifiable_event": {
+      "type": "boolean"
+    },
+    "worksafe_notified": {
+      "type": "boolean"
+    },
+    "worksafe_notification_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "worksafe_reference": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "open",
+        "investigating",
+        "corrective_actions",
+        "pending_closure",
+        "closed"
+      ],
+      "default": "open"
+    },
+    "investigation_notes": {
+      "type": "string"
+    },
+    "corrective_actions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string"
+          },
+          "assigned_to": {
+            "type": "string"
+          },
+          "due_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "in_progress",
+              "completed",
+              "overdue"
+            ]
+          },
+          "completed_date": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      }
+    },
+    "closure_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "closed_by_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "organization_id",
+    "incident_type",
+    "description"
+  ]
+}

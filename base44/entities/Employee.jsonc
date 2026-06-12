@@ -1,0 +1,168 @@
+{
+  "name": "Employee",
+  "type": "object",
+  "properties": {
+    "organization_id": {
+      "type": "string",
+      "description": "Reference to the organization"
+    },
+    "first_name": {
+      "type": "string"
+    },
+    "last_name": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string",
+      "format": "email"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "date_of_birth": {
+      "type": "string",
+      "format": "date"
+    },
+    "position": {
+      "type": "string"
+    },
+    "department": {
+      "type": "string"
+    },
+    "employment_type": {
+      "type": "string",
+      "enum": [
+        "full_time",
+        "part_time",
+        "casual",
+        "fixed_term",
+        "contractor"
+      ]
+    },
+    "start_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "end_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "onboarding",
+        "active",
+        "on_leave",
+        "terminated",
+        "resigned"
+      ],
+      "default": "onboarding"
+    },
+    "visa_type": {
+      "type": "string"
+    },
+    "visa_expiry": {
+      "type": "string",
+      "format": "date"
+    },
+    "visa_document_url": {
+      "type": "string"
+    },
+    "emergency_contact_name": {
+      "type": "string"
+    },
+    "emergency_contact_phone": {
+      "type": "string"
+    },
+    "emergency_contact_relationship": {
+      "type": "string"
+    },
+    "bank_account_name": {
+      "type": "string"
+    },
+    "bank_account_number": {
+      "type": "string"
+    },
+    "ird_number": {
+      "type": "string"
+    },
+    "tax_code": {
+      "type": "string"
+    },
+    "kiwisaver_rate": {
+      "type": "number"
+    },
+    "hourly_rate": {
+      "type": "number"
+    },
+    "salary": {
+      "type": "number"
+    },
+    "pay_frequency": {
+      "type": "string",
+      "enum": [
+        "weekly",
+        "fortnightly",
+        "monthly"
+      ]
+    },
+    "address": {
+      "type": "string"
+    },
+    "photo_url": {
+      "type": "string"
+    },
+    "documents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "uploaded_date": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      }
+    },
+    "certifications": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "expiry_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "document_url": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "manager_id": {
+      "type": "string",
+      "description": "Reference to the manager employee record"
+    },
+    "user_id": {
+      "type": "string",
+      "description": "Link to app user ID"
+    }
+  },
+  "required": [
+    "first_name",
+    "last_name",
+    "organization_id"
+  ]
+}

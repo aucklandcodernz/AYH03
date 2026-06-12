@@ -1,0 +1,31 @@
+{
+  "name": "User",
+  "type": "object",
+  "properties": {
+    "role": {
+      "type": "string",
+      "enum": [
+        "owner",
+        "agency_admin",
+        "org_admin",
+        "hr_manager",
+        "payroll_admin",
+        "team_leader",
+        "employee"
+      ],
+      "default": "employee"
+    },
+    "organization_id": {
+      "type": "string",
+      "description": "The organization this user belongs to"
+    },
+    "employee_id": {
+      "type": "string",
+      "description": "Link to employee profile"
+    },
+    "agency_id": {
+      "type": "string",
+      "description": "For agency users, the agency org ID"
+    }
+  }
+}

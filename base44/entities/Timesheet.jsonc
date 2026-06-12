@@ -1,0 +1,94 @@
+{
+  "name": "Timesheet",
+  "type": "object",
+  "properties": {
+    "organization_id": {
+      "type": "string"
+    },
+    "employee_id": {
+      "type": "string"
+    },
+    "period_start": {
+      "type": "string",
+      "format": "date"
+    },
+    "period_end": {
+      "type": "string",
+      "format": "date"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "submitted",
+        "approved",
+        "rejected",
+        "locked"
+      ],
+      "default": "draft"
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "start_time": {
+            "type": "string"
+          },
+          "end_time": {
+            "type": "string"
+          },
+          "break_minutes": {
+            "type": "number"
+          },
+          "total_hours": {
+            "type": "number"
+          },
+          "location": {
+            "type": "string"
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "total_hours": {
+      "type": "number"
+    },
+    "overtime_hours": {
+      "type": "number"
+    },
+    "employee_declaration": {
+      "type": "boolean",
+      "default": false
+    },
+    "declaration_timestamp": {
+      "type": "string"
+    },
+    "declaration_ip": {
+      "type": "string"
+    },
+    "submitted_date": {
+      "type": "string"
+    },
+    "reviewer_id": {
+      "type": "string"
+    },
+    "review_date": {
+      "type": "string"
+    },
+    "review_comments": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "employee_id",
+    "period_start",
+    "period_end"
+  ]
+}

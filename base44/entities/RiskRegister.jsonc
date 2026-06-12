@@ -1,0 +1,50 @@
+{
+  "name": "RiskRegister",
+  "type": "object",
+  "properties": {
+    "organization_id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "risk_level": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ]
+    },
+    "controls": {
+      "type": "string"
+    },
+    "responsible_person": {
+      "type": "string"
+    },
+    "review_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "mitigated",
+        "closed"
+      ],
+      "default": "active"
+    }
+  },
+  "required": [
+    "organization_id",
+    "title"
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "name": "Meeting",
+  "type": "object",
+  "properties": {
+    "organization_id": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "toolbox",
+        "safety",
+        "staff",
+        "other"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "date_time": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    },
+    "attendees": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "employee_id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "signed": {
+            "type": "boolean"
+          },
+          "signed_date": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "topics_discussed": {
+      "type": "string"
+    },
+    "hazards_raised": {
+      "type": "string"
+    },
+    "actions_assigned": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string"
+          },
+          "assigned_to": {
+            "type": "string"
+          },
+          "due_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "minutes": {
+      "type": "string"
+    },
+    "created_by_name": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "organization_id",
+    "title"
+  ]
+}

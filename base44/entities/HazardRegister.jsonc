@@ -1,0 +1,56 @@
+{
+  "name": "HazardRegister",
+  "type": "object",
+  "properties": {
+    "organization_id": {
+      "type": "string"
+    },
+    "hazard_description": {
+      "type": "string"
+    },
+    "area_location": {
+      "type": "string"
+    },
+    "risk_level": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ]
+    },
+    "existing_controls": {
+      "type": "string"
+    },
+    "further_actions": {
+      "type": "string"
+    },
+    "responsible_person": {
+      "type": "string"
+    },
+    "review_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "linked_incident_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "controlled",
+        "eliminated"
+      ],
+      "default": "active"
+    }
+  },
+  "required": [
+    "organization_id",
+    "hazard_description"
+  ]
+}
