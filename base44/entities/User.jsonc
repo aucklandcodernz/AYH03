@@ -15,5 +15,18 @@
       ],
       "default": "employee"
     }
-  }
+  },
+  "rls": {
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  },
+  "required": []
 }
