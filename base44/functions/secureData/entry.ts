@@ -71,7 +71,10 @@ const ALLOWED_ENTITIES = new Set([
     'Training', 'LeaveRequest'
 ]);
 
-const EXPLICITLY_BLOCKED = new Set(['User', 'Membership', 'AgencyAssignment', 'Organization']);
+// Organization is read-only through this gateway; write ops are always rejected
+const ORG_READ_ONLY = new Set(['Organization']);
+
+const EXPLICITLY_BLOCKED = new Set(['User', 'Membership', 'AgencyAssignment']);
 
 function isInScope(scope, orgId) {
     if (scope.scope_level === 'platform') return true;
@@ -96,7 +99,13 @@ Deno.serve(async (req) => {
     if (EXPLICITLY_BLOCKED.has(entity)) {
         return Response.json({ error: `Access to '${entity}' is not permitted through this gateway` }, { status: 403 });
     }
-    if (!ALLOWED_ENTITIES.has(entity)) {
+
+    // Organization: read-only (list/get); reject write ops
+    if (ORG_READ_ONLY.has(entity)) {
+        if (op !== 'list' && op !== 'get') {
+            return Response.json({ error: `'${op}' is not permitted for Organization through this gateway` }, { status: 403 });
+        }
+    } else if (!ALLOWED_ENTITIES.has(entity)) {
         return Response.json({ error: `Unknown or disallowed entity: '${entity}'` }, { status: 403 });
     }
 
@@ -112,6 +121,12 @@ Deno.serve(async (req) => {
         let result;
         if (scope.scope_level === 'platform') {
             result = await store.filter(query || {});
+        } else if (entity === 'Organization') {
+            // Scope Organization reads: only ids the caller can reach
+            const safeQuery = Object.assign({}, query || {}, {
+                id: { $in: scope.organization_ids }
+            });
+            result = await store.filter(safeQuery);
         } else {
             // Mandatory org filter — client query cannot widen beyond allowed orgs
             const safeQuery = Object.assign({}, query || {}, {
@@ -127,7 +142,9 @@ Deno.serve(async (req) => {
         const records = await store.filter({ id });
         const record = records && records[0];
         if (!record) return Response.json({ error: 'Not found' }, { status: 404 });
-        if (!isInScope(scope, record.organization_id)) {
+        // For Organization, scope check is by its own id; for others, by organization_id field
+        const scopeCheckId = entity === 'Organization' ? record.id : record.organization_id;
+        if (!isInScope(scope, scopeCheckId)) {
             return Response.json({ error: 'Forbidden' }, { status: 403 });
         }
         return Response.json(record);

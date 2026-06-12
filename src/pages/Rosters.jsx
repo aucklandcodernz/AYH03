@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { base44 } from '@/api/base44Client';
 import { sdList, sdCreate, sdUpdate } from '@/lib/secureDataClient';
 import PageHeader from '@/components/shared/PageHeader';
 import StatusBadge from '@/components/shared/StatusBadge';
@@ -23,7 +22,7 @@ export default function Rosters() {
     queryKey: ['rosters'],
     queryFn: () => sdList('Roster'),
   });
-  const { data: orgs = [] } = useQuery({ queryKey: ['organizations'], queryFn: () => base44.entities.Organization.list() });
+  const { data: orgs = [] } = useQuery({ queryKey: ['organizations'], queryFn: () => sdList('Organization') });
 
   const createMutation = useMutation({
     mutationFn: (data) => sdCreate('Roster', data),
